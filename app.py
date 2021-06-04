@@ -2,11 +2,11 @@ from flask import Flask, url_for, redirect, session, render_template
 from flask_login import LoginManager, login_required, logout_user
 from datetime import timedelta
 import dj_database_url
-from models import db, User, VisitingTime
+from models import db, User
 from views.login import login
 from views.result import result
 from views.admin import admin
-# from werkzeug.security import generate_password_hash
+
 app = Flask(__name__)
 app.register_blueprint(login)
 app.register_blueprint(result)
@@ -29,17 +29,6 @@ login_manager.init_app(app)
 login_manager.login_view = "login.user_login"
 login_manager.login_message = "您沒有權限，請先登入"
 
-# with app.app_context():
-    # test = db.session.query(VisitingTime).filter(except_all(VisitingTime.date.startswith("Sat"))).all()
-        
-    # a = News.query.filter_by(newsId=509).first()
-    # db.session.delete(a)
-    # db.session.commit()
-    # user = User(name="John", password=generate_password_hash("testpassword", method="sha256"))
-    # db.session.add(user)
-    # db.session.commit()
-    # test = User.query.all()
-    # print(test)
 @login_manager.user_loader
 def load_user(id):
     user = User.query.get(id)
@@ -61,5 +50,4 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == 'main':
-    db.create_all()
     app.run()

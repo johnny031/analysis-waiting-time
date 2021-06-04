@@ -46,17 +46,13 @@ class VisitingTime(db.Model):
         section = "M" if time >= 9 and time < 12 else "A" if time >= 13 and time < 17 else \
                 "N" if time >= 18 and time < 21 else ""
         if not section: return "非看診時間"
-
         if day.startswith("Sat") or day.startswith("Sun"):
             data = db.session.query(class_).filter(VisitingTime.date.startswith("S")).all()
         else:
             data = db.session.query(class_).filter(not_(VisitingTime.date.startswith("S"))).all()
         dict = [vars(u) for u in data]
-
         dict_processed = [sorted([[k, v] for k,v in i.items() if k.startswith(section)], \
                             key = lambda a: int(a[0][1:])) for i in dict]
-
-        data_selected = [[i.pop(1) for i in elem] for elem in dict_processed]
-        
+        data_selected = [[i.pop(1) for i in elem] for elem in dict_processed]      
         waiting_time = sum([sum(i[current-1:number-1]) for i in data_selected])/len(data_selected)
         return waiting_time
