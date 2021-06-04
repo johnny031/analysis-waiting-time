@@ -1,0 +1,19 @@
+{% extends "layout.html" %}{% block title %}預估結果{% endblock %} {% block
+content %}
+<div class="form-container">
+  {% if error %}
+  <h2>{{ error }}</h2>
+  {% else %}
+  <h2>預估結果：</h2>
+  <h3>仍需等待：{{ waiting_time }} 分鐘</h3>
+  <h3>看診時間：{{ result }}</h3>
+  <h3>
+    將於預估看診時間<input
+      type="number"
+      class="alert-time"
+      value="30"
+    />分鐘前通知
+  </h3>
+  {% endif %}
+</div>
+{%endblock %}

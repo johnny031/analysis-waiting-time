@@ -1,0 +1,18 @@
+{% extends "layout.html" %}{% block title %}預估看診時間{% endblock %} {% block
+content %}
+<div class="form-container">
+  <h3>預估看診時間查詢</h3>
+  <h4>身分證字號：</h4>
+  <input type="text" placeholder="請輸入身分證字號" />
+  <button class="summit-btn">搜尋</button>
+  <form action="/result" method="POST" onsubmit="return validateForm()">
+    <!-- 目前號碼應從掛號系統取得 -->
+    <h4>目前號碼：</h4>
+    <input type="number" name="current_num" placeholder="請輸入目前輪到號碼" />
+    <!-- 掛號號碼應透過使用者輸入之身分證字號，在資料庫中query取得 -->
+    <h4>掛號號碼：</h4>
+    <input type="number" name="number" placeholder="請輸入掛號號碼" />
+    <button type="submit">搜尋</button>
+  </form>
+</div>
+{%endblock %}

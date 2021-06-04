@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  background-color: rgb(241, 241, 241);
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+.form-container {
+  width: 60%;
+  margin: 2.5em auto 0 auto;
+}
+header {
+  background: #021063;
+}
+header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.logo {
+  color: white;
+  font-size: 1.2rem;
+  float: left;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+nav {
+  float: right;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+  position: relative;
+}
+nav a {
+  color: rgb(241, 241, 241);
+  text-decoration: none;
+  font-size: 14px;
+}
+nav a:hover {
+  color: rgb(236, 236, 236);
+}
+nav a::before {
+  content: "";
+  display: block;
+  height: 0.5px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  bottom: -3px;
+  width: 0%;
+}
+nav a:hover::before {
+  width: 100%;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.add-delay-time {
+  margin-left: 1em;
+}
+input.alert-time,
+input.delay-time,
+input.situation {
+  width: 2rem;
+  font-size: 1em;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+}
+input.situation {
+  width: 7rem;
+  font-weight: bold;
+}
+input.alert-time::-webkit-outer-spin-button,
+input.alert-time::-webkit-inner-spin-button,
+input.delay-time::-webkit-outer-spin-button,
+input.delay-time::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.alert-message {
+  font-size: 1.1rem;
+  background-color: rgb(255, 217, 217);
+  color: rgb(177, 42, 42);
+  text-align: center;
+  width: 100%;
+  height: 3.5rem;
+  line-height: 3.5rem;
+  text-shadow: 0.6px 0.6px 0.6px rgb(134, 134, 134);
+  box-shadow: 1px 1px 3px rgb(161, 161, 161);
+}
