@@ -1,28 +1,21 @@
 from flask import Flask, url_for, redirect, session, render_template
 from flask_login import LoginManager, login_required, logout_user
 from datetime import timedelta
-import dj_database_url
 from models import db, User
 from views.login import login
 from views.result import result
 from views.admin import admin
-
+# from werkzeug.security import generate_password_hash
 app = Flask(__name__)
 app.register_blueprint(login)
 app.register_blueprint(result)
 app.register_blueprint(admin)
 
-app.config['SECRET_KEY'] = 'Thisismysecretkeyandsupposenottobeknownfromothers'
+app.config['SECRET_KEY'] = 'MY SECRET_KEY'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://PDN7R7LWTe:FUjyTWF6nO@remotemysql.com/PDN7R7LWTe'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'URI LINK TO MYSQL SERVER'
 app.config['SQLALCHEMY_POOL_RECYCLE'] = 1
-# heroku connect database settings
-DATABASES = {
-    'default': 'mysql://PDN7R7LWTe:FUjyTWF6nO@remotemysql.com/PDN7R7LWTe'
-}
-DATABASES['default'] = dj_database_url.config(
-    default='mysql://PDN7R7LWTe:FUjyTWF6nO@remotemysql.com/PDN7R7LWTe',
-)
+
 db.init_app(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -50,4 +43,5 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == 'main':
+    db.create_all()
     app.run()
